@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- STYLE -->
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <!-- VUE CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Curso Vue 3</title>
+  </head>
+  <body>
+    <div id="app">
+      <div class="product-display">
+        <div class="product-container">
+          <div class="product-image">
+            <img :src="image" alt="image-product" />
+          </div>
+          <div class="product-info">
+            <h1>{{ product_title }}</h1>
+            <p v-if="inStock > 10">In Stock</p>
+            <p v-else-if="inStock < 10 && inStock > 1" :key="variant.id" >In stock</p>
+            <p v-else>Out of stock</p>
+            <h2>Detalis</h2>
+            <ul>
+              <li v-for="detail in detalis">{{ detail }}</li>
+            </ul>
+            <h2>Colors</h2>
+            <div v-for="variant in variants">{{variant.color}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const { createApp, ref } = Vue;
+
+      createApp({
+        setup() {
+          return {
+            product_title: ref("T-Shirt"),
+            image: ref("./assets/images/t-shirt-blue.png"),
+            inStock: ref(11),
+            detalis: ["50% cotton", "30% polyester", "20% woll"],
+            variants: [
+              { id: 1, color: "blue" },
+              { id: 2, color: "green" },
+            ],
+          };
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>

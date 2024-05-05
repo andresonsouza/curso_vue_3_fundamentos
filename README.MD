@@ -1,4 +1,4 @@
-# CURSO DE VUE 3
+# CURSO DE INTRODUÇÃO AO VUE 3
 
 Link do [Curso Vue.js com Vite e Bootstrap](https://www.udemy.com/share/10a2lg3@MlNRdv30H81xbKu_vS8vFPDaMmD8QoOHTpnh-HEfdf3RA54ekwjRGIKpBUMK-G-t/)
 
