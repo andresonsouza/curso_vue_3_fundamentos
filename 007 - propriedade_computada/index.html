@@ -3,9 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- STYLE -->
     <link rel="stylesheet" href="../assets/styles.css" />
-    <!-- VUE CDN -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <title>Curso Vue 3</title>
   </head>
@@ -19,26 +17,29 @@
             <img :src="image" alt="image-product" />
           </div>
           <div class="product-info">
-            <h1>{{ product_title }}</h1>
-            <p v-if="inStock > 10">In Stock</p>
-            <p v-else-if="inStock < 10 && inStock > 1">Almost of stock</p>
-            <p v-else>Out of stock</p>
+            <h1>{{ tileWithBrand }}</h1>
+            <p>Status: {{inStockComputed}}</p>
             <h2>Detalis</h2>
+
             <ul>
               <li v-for="detail in detalis">{{ detail }}</li>
             </ul>
+
             <h2>Colors</h2>
-            <!-- @ é a abreviação do v-on -->
+
             <div
               v-for="variant in variants"
               :key="variant.id"
-              @:mouseover="changeImage(variant.image)"
+              @mouseover="changeImage(variant.image)"
+              class="color-circle"
+              :style="{ backgroundColor: variant.color}"
+            ></div>
+            <button
+              class="button"
+              :class="{ disabledButton : inStock < 1 }"
+              @click="addToCart"
+              :disabled="inStock < 1"
             >
-              {{variant.color}}
-            </div>
-            <button 
-              class="button" 
-              @:click="addToCart">
               Add to Cart
             </button>
           </div>
@@ -47,7 +48,7 @@
     </div>
 
     <script>
-      const { createApp, ref } = Vue;
+      const { createApp, ref, computed } = Vue;
 
       createApp({
         setup() {
@@ -61,10 +62,28 @@
             image.value = variantImage;
           };
 
+          const product_title = "T-Shirt";
+          const brand = "SunCoast";
+
+          const tileWithBrand = computed(() => {
+            return product_title + " " + brand;
+          });
+
+          const inStockComputed = computed(() => {
+            if (inStock > 10) {
+              return "In Stock";
+            } else if (inStock < 10 && inStock > 1) {
+              return "Almost of stock";
+            } else {
+              return "Out of stock";
+            }
+          });
+
+          const inStock = 0;
+
           return {
-            product_title: ref("T-Shirt"),
             image,
-            inStock: ref(11),
+            inStock: ref(10),
             detalis: ["50% cotton", "30% polyester", "20% woll"],
             variants: [
               {
@@ -81,6 +100,8 @@
             cart,
             addToCart,
             changeImage,
+            tileWithBrand,
+            inStockComputed,
           };
         },
       }).mount("#app");
