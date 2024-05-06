@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Curso Vue 3</title>
+  </head>
+  <body>
+    <div id="app">
+      <cart-display :cart="cart"></cart-display>
+
+      <product-display @add-to-Cart="addToCart"></product-display>
+    </div>
+
+    <!-- Import do arquivo principal do vue -->
+    <script src="./main.js"></script>
+
+    <script src="./components/Product.js"></script>
+    <script src="./components/cart.js"></script>
+    <!-- Monta o App -->
+    <script>
+      app.mount("#app");
+    </script>
+  </body>
+</html>
