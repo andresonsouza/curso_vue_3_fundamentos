@@ -9,5 +9,6 @@ Link do [Curso Vue.js com Vite e Bootstrap](https://www.udemy.com/share/10a2lg3@
 * 001 - vue CDN
 * 002 - Bind
 * 003 - Condicionais
-* 004 - Renderização de Lista
-* 005 - Eventos Manuais
+* 004 - Renderização de lista
+* 005 - Eventos manuais
+* 006 - Renderização condicional de estilos
