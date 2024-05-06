@@ -3,9 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- STYLE -->
     <link rel="stylesheet" href="../assets/styles.css" />
-    <!-- VUE CDN -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <title>Curso Vue 3</title>
   </head>
@@ -20,6 +18,7 @@
           </div>
           <div class="product-info">
             <h1>{{ product_title }}</h1>
+
             <p v-if="inStock > 10">In Stock</p>
             <p v-else-if="inStock < 10 && inStock > 1">In stock</p>
             <p v-else>Out of stock</p>
@@ -27,17 +26,24 @@
             <ul>
               <li v-for="detail in detalis">{{ detail }}</li>
             </ul>
+
             <h2>Colors</h2>
-            <!-- @ é a abreviação do v-on -->
+
             <div
               v-for="variant in variants"
               :key="variant.id"
-              @:mouseover="changeImage(variant.image)"
+              @mouseover="changeImage(variant.image)"
               class="color-circle"
+              :style="{ backgroundColor: variant.color}"
+            ></div>
+            <button
+              class="button"
+              :class="{ disabledButton : inStock < 1 }"
+              @click="addToCart"
+              :disabled="inStock < 1"
             >
-              {{variant.color}}
-            </div>
-            <div class="button" @:click="cart +=1">Add to Cart</div>
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>
@@ -61,7 +67,7 @@
           return {
             product_title: ref("T-Shirt"),
             image,
-            inStock: ref(11),
+            inStock: ref(0),
             detalis: ["50% cotton", "30% polyester", "20% woll"],
             variants: [
               {
@@ -72,7 +78,7 @@
               {
                 id: 2,
                 color: "green",
-                image: "./assets/images/t-shirt-green.png",
+                image: "../assets/images/t-shirt-green.png",
               },
             ],
             cart,

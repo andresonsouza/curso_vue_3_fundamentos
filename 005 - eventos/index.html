@@ -36,7 +36,11 @@
             >
               {{variant.color}}
             </div>
-            <div class="button" @:click="cart +=1">Add to Cart</div>
+            <button 
+              class="button" 
+              @:click="addToCart">
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>
@@ -71,7 +75,7 @@
               {
                 id: 2,
                 color: "green",
-                image: "./assets/images/t-shirt-green.png",
+                image: "../assets/images/t-shirt-green.png",
               },
             ],
             cart,
