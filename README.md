@@ -15,3 +15,7 @@ Link do [Curso Vue.js com Vite e Bootstrap](https://www.udemy.com/share/10a2lg3@
 * 007 - Propriedade computada
 * 008 - Componente com emissão de eventos
 * 009 - Componente recebendo Props
+
+## Layout da Aplicação
+
+![](./assets/images/applicacao-final.png)
